@@ -22,14 +22,15 @@ Let's run a mongod instance as a member of test replica set with the following c
 Next, let's connect to this instance and configure its replica set as shown below:
 
     mongo --port 27017
-    mongo --port 27018
+    mongo --port 10739
 
 You can setup more replica sets by:
     
-    sudo ./rs.sh 3
-    sudo ./rs.sh 4
-    sudo ./rs.sh 5
-
+    sudo sh ./rs.sh 3 ----> mongo --port 27020
+    sudo sh ./rs.sh 4 ----> mongo --port 27021
+    sudo sh ./rs.sh 5 ----> mongo --port 27022
+    
+Note: you can connect to each on with PORT = (27017+ID)    
 
 Thanks:
 
