@@ -22,18 +22,20 @@ Let's run a mongod instance as a member of test replica set with the following c
 Next, let's connect to this instance and configure its replica set as shown below:
 
     mongo --port 27017
-    mongo --port 27001
+    mongo --port 27018
 
+You can setup more replica sets by:
+    
+    sudo ./rs.sh 3
+    sudo ./rs.sh 4
+    sudo ./rs.sh 5
 
 
 Thanks:
 
-https://zaiste.net/mongodb_replica_set_and_osx_setup/
-https://medium.com/@katopz/minimal-mongodb-replica-set-osx-76dc9dc36018
+- https://zaiste.net/mongodb_replica_set_and_osx_setup/
+- https://medium.com/@katopz/minimal-mongodb-replica-set-osx-76dc9dc36018
 
-
-
-sudo ./rs.sh 2
 
 Commands:
 
