@@ -11,6 +11,7 @@ mkdir -p ./var/log/mongodb
 # Create replica set 1
 . rs.sh 1
 # List existing mongo process
+. rs.sh 2
 pgrep mongo
 # Connect to available host
 mongo

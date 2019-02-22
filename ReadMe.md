@@ -18,11 +18,22 @@ Let's run a mongod instance as a member of test replica set with the following c
     brew services stop mongodb
     sudo rm -rf rs0 rs0.conf rs1 rs1.conf var/ rs2 rs2.conf
     sudo sh ./setup.sh
+    
+    
+Do not forget to set in slave shell
 
+    rs.slaveOk()
+    
+and use 
+    
+    mongodb://127.0.0.1:27018/XYZ?replicaSet=rs0
+
+to avoid `MongoError: not master and slaveOk=false` error
+    
 Next, let's connect to this instance and configure its replica set as shown below:
 
     mongo --port 27017
-    mongo --port 10739
+    mongo --port 10718
 
 You can setup more replica sets by:
     
@@ -44,6 +55,26 @@ Commands:
     brew services start mongodb
     brew services stop mongodb
     sudo rm -rf rs0 rs0.conf rs1 rs1.conf var/ rs2 rs2.conf
-    db.adminCommand({setFeatureCompatibilityVersion: "3.6"})   
+    db.adminCommand({setFeatureCompatibilityVersion: "3.6"})
+    db.adminCommand({replSetStepDown: 86400, force: 1})
+       
     rs.initiate({_id:"rs0", members: [{_id:0, host:"127.0.0.1:27017"}, {_id:1, host:"127.0.0.1:27018"}]})
+    
+    > rs.initiate({
+       "_id" : "rs0",
+       "members" : [
+        {
+         "_id" : 0,
+         "host" : "localhost:27017"
+        },
+        {
+         "_id" : 1,
+         "host" : "localhost:27018"
+        },
+        {
+         "_id" : 2,
+         "host" : "localhost:27019"
+        }
+       ]
+    })
      
